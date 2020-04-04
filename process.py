@@ -29,10 +29,12 @@ data = data.drop(data.index[0])
 for column in header:
     if datatype[column] == "int":
         data[column] = pd.to_numeric(data[column], errors='coerce')
-        data[column] = data[column].dropna().astype('int32')
+        data[column] = data[column].dropna().astype('int')
 
     if datatype[column] == "string":
         data[column] = data[column].dropna().astype('U').str.strip()
+
+print(data.dtypes)
 
 # Filter and create character objects
 characters = dict()
@@ -45,18 +47,7 @@ for ch in data['Character'].unique():
 for ch in characters:
     characters[ch].print_name()
     print(characters[ch].damage_total())
-    print(characters[ch].damage_avg())
+    print(characters[ch].damage_mean())
     print("~~~")
 
 print(characters['Garrin'].df)
-
-# def total_damage(df, character): df[df.Target.str.contains(character)].Damage.sum()
-# print(data[data.Target.str.contains("Automaton")].Damage.sum())
-# print(damage_total(data, "Automaton"))
-# print(data[data.Target.str.contains("Zombie 1")].Damage.sum())
-# print(damage_total(data, "Zombie 1"))
-# print(data[data.AC != 0].AC.min())
-
-
-# print(data)
-

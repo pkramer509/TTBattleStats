@@ -11,5 +11,5 @@ class Character:
     def damage_total(self):
         return self.df.Damage.sum()
 
-    def damage_avg(self):
+    def damage_mean(self):
         return self.df.Damage.mean()
